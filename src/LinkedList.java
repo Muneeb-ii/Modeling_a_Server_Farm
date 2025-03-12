@@ -9,6 +9,7 @@ import java.util.Iterator;
 public class LinkedList<T> implements Iterable<T>{
 
     private Node<T> head;
+    private Node<T> tail;
     private int size;
 
     /**
