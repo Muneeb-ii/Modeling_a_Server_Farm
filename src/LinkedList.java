@@ -223,6 +223,14 @@ public class LinkedList<T> implements Iterable<T>{
     }
 
     /**
+     * Returns the last item in the linked list
+     * @return the last item in the linked list
+     */
+    public T getLast(){
+        return tail.getData();
+    }
+
+    /**
      * Returns the item at the specified index
      * @param index the index of the item to be returned
      * @return the item at the specified index
