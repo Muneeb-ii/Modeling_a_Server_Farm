@@ -182,6 +182,22 @@ public class LinkedList<T> implements Iterable<T>{
     }
 
     /**
+     * Adds an item to the end of the linked list
+     * @param item the item to be added
+     */
+    public void addLast(T item){
+        Node<T> newNode = new Node<T>(item);
+        if (head == null){
+            head = newNode;
+            tail = newNode;
+        }
+        else{
+            tail.setNext(newNode);
+            tail = newNode;
+        }
+    }
+
+    /**
      * Returns the item at the specified index
      * @param index the index of the item to be returned
      * @return the item at the specified index
