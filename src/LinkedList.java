@@ -177,9 +177,16 @@ public class LinkedList<T> implements Iterable<T>{
      */
     public void add(T item){
         Node<T> newNode = new Node<>(item);
-        newNode.setNext(head);
-        head = newNode;
-        size++;
+        if(head==null){
+            head = newNode;
+            tail = newNode;
+            size++;
+        }
+        else{
+            newNode.setNext(head.getNext());
+            head = newNode;
+            size++;
+        }
     }
 
     /**
@@ -275,6 +282,9 @@ public class LinkedList<T> implements Iterable<T>{
 
         if(index == 0){
             add(item); 
+        }
+        else if(index == size){
+            addLast(item);
         }
         else{
             Node<T> currNode = head;
