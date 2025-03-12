@@ -6,7 +6,7 @@ import java.util.Iterator;
  * Purpose of the class: Implementation of a Linked List
  */
 
-public class LinkedList<T> implements Iterable<T>{
+public class LinkedList<T> implements Iterable<T>, Queue<T>{
 
     private Node<T> head;
     private Node<T> tail;
@@ -127,6 +127,27 @@ public class LinkedList<T> implements Iterable<T>{
         }
         else{
             return false;
+        }
+    }
+
+    /**
+     * Adds the given item to the end of the linked list
+     * @param item the item to be added to the end of the linked list
+     */
+    public void offer(T item){
+        addLast(item);
+    }
+
+    /**
+     * Returns the item at the front of the linked list
+     * @return the item at the front of the linked list
+     */
+    public T peek(){
+        if (head == null){
+            return null;
+        }
+        else{
+            return head.getData();
         }
     }
 
