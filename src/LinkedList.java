@@ -265,6 +265,13 @@ public class LinkedList<T> implements Iterable<T>{
         if (head == null){
             return null;
         }
+        else if(size==1){
+            T firstItem = head.getData();
+            head = null;
+            tail = null;
+            size--;
+            return firstItem;
+        }
         else{
             T firstItem = head.getData();
             head = head.getNext();
@@ -311,6 +318,9 @@ public class LinkedList<T> implements Iterable<T>{
 
         if(index==0){
             return remove();
+        }
+        else if (index == size-1){
+            return removeLast();
         }
         else{
             for(currIndex = 0; currIndex < index; currIndex++){
