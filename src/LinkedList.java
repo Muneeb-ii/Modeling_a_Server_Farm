@@ -112,6 +112,7 @@ public class LinkedList<T> implements Iterable<T>{
      */
     public void clear(){
         head = null;
+        tail = null;
         size = 0;
     }
 
