@@ -152,6 +152,14 @@ public class LinkedList<T> implements Iterable<T>, Queue<T>{
     }
 
     /**
+     * Returns and removes the item at the front of the linked list
+     * @return the item at the front of the linked list
+     */
+    public T poll(){
+        return remove();
+    }
+
+    /**
      * Returns a string representation of the linked list
      * 
      * @return a string representation of the linked list
