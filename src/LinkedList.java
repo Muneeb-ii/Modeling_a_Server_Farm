@@ -190,10 +190,12 @@ public class LinkedList<T> implements Iterable<T>{
         if (head == null){
             head = newNode;
             tail = newNode;
+            size++;
         }
         else{
             tail.setNext(newNode);
             tail = newNode;
+            size++;
         }
     }
 
