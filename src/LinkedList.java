@@ -200,6 +200,29 @@ public class LinkedList<T> implements Iterable<T>{
     }
 
     /**
+     * Removes and returns the last item in the linked list
+     * @return the last item in the linked list
+     */
+    public T removeLast(){
+        if (head == null){
+            return null;
+        }
+        else{
+            Node<T> currNode = head;
+            Node<T> prevNode = null;
+            while(currNode.getNext()!=null){
+                prevNode = currNode;
+                currNode = currNode.getNext();
+            }
+            T lastItem = currNode.getData();
+            prevNode.setNext(null);
+            tail = prevNode;
+            size--;
+            return lastItem;
+        }
+    }
+
+    /**
      * Returns the item at the specified index
      * @param index the index of the item to be returned
      * @return the item at the specified index
