@@ -206,13 +206,13 @@ public class LinkedList<T> implements Iterable<T>, Queue<T>{
      */
     public void add(T item){
         Node<T> newNode = new Node<>(item);
-        if(head==null){
+        if(size==0){
             head = newNode;
             tail = newNode;
             size++;
         }
         else{
-            newNode.setNext(head.getNext());
+            newNode.setNext(head);
             head = newNode;
             size++;
         }
