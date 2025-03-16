@@ -30,4 +30,12 @@ public abstract class JobDispatcher {
         numOfJobsHandled = 0;
         serverFarmViz = new ServerFarmViz(this, showViz);
     }
+    
+    /**
+     * Returns the system time
+     * @return the system time
+     */
+    public double getTime(){
+        return sysTime;
+    }
 }
