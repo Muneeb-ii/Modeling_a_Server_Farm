@@ -5,10 +5,10 @@
  * 
  */
 
- import java.awt.Graphics; 
  import java.awt.Color;
- import java.awt.Toolkit;
  import java.awt.Font;
+ import java.awt.Graphics;
+ import java.awt.Toolkit;
 
 public class Server {
     
@@ -17,6 +17,7 @@ public class Server {
     private double remainingTime; // remaining time for all jobs to be processed
     private int numOfJobsProcessed; // number of jobs processed
     private int numOfJobsInQueue; // number of jobs in the queue
+    private double totalWaitingTime; // total waiting time for all jobs
     
     /**
      * Constructor for the Server class
@@ -26,6 +27,8 @@ public class Server {
         sysTime = 0.0;
         remainingTime = 0.0;
         numOfJobsProcessed = 0;
+        numOfJobsInQueue = 0;
+        totalWaitingTime = 0.0;
     }
 
     /**
@@ -45,10 +48,7 @@ public class Server {
     public void processTo(double time){
         double timeLeft = time - sysTime; // time left to process
         while(timeLeft>0.0){
-            if(jobQueue.isEmpty()){
-                sysTime += timeLeft; // if there are no jobs, just move the system time forward
-            }
-            else{
+            if(!jobQueue.isEmpty()){
                 Job currentJob = jobQueue.peek(); // get the job at the front of the queue
                 double timeToProcess = currentJob.getProcessingTimeNeeded(); // time to process the current job
 
@@ -63,9 +63,13 @@ public class Server {
                 
                 if(currentJob.isFinished()){ // if the job is finished, remove it from the queue
                     jobQueue.poll();
+                    totalWaitingTime += currentJob.timeInQueue(); // add the time spent in the queue to the total waiting time
                     numOfJobsProcessed++;
                     numOfJobsInQueue--;
                 }
+            }
+            else{
+                sysTime += timeLeft; // if there are no jobs in the queue, just move the system time forward
             }
         }
     }
@@ -92,6 +96,10 @@ public class Server {
      */
     public int jobsProcessed(){
         return numOfJobsProcessed;
+    }
+
+    public double getTotalWaitingTime() {
+        return totalWaitingTime;
     }
 
     /**
