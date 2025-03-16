@@ -6,6 +6,8 @@
  */
 
 import java.util.ArrayList;
+import java.awt.Graphics;
+import java.awt.Color;
 
 public abstract class JobDispatcher {
 
@@ -109,5 +111,18 @@ public abstract class JobDispatcher {
             }
         }
         advanceTimeTo(sysTime + minTimeReq);
+    }
+
+    /**
+     * Draws the visualization of the job dispatcher
+     * @param g the graphics object used for drawing
+     */
+    public void draw(Graphics g){
+        double sep = (ServerFarmViz.HEIGHT - 20) / (getServerList().size() + 2.0);
+        g.drawString("Time: " + getTime(), (int) sep, ServerFarmViz.HEIGHT - 20);
+        g.drawString("Jobs handled: " + getNumJobsHandled(), (int) sep, ServerFarmViz.HEIGHT - 10);
+        for(int i = 0; i < getServerList().size(); i++){
+            getServerList().get( i ).draw(g, (i % 2 == 0) ? Color.GRAY : Color.DARK_GRAY, (i + 1) * sep, getServerList().size());
+        }
     }
 }
