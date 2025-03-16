@@ -46,4 +46,15 @@ public abstract class JobDispatcher {
     public ArrayList<Server> getServerList(){
         return servers;
     }
+
+    /**
+     * Calls the processTo method for each server in the list of servers
+     * @param time the time until which to process jobs for each server
+     */
+    public void advanceTimeTo(double time){
+        sysTime = time;
+        for(Server server : servers){
+            server.processTo(time);
+        }
+    }
 }
