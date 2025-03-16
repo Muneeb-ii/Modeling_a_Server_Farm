@@ -11,6 +11,7 @@ public class Server {
     private double sysTime; // system time
     private double remainingTime; // remaining time for all jobs to be processed
     private int numOfJobsProcessed; // number of jobs processed
+    private int numOfJobsInQueue; // number of jobs in the queue
     
     /**
      * Constructor for the Server class
@@ -29,6 +30,7 @@ public class Server {
     public void addJob(Job job){
         jobQueue.offer(job);
         remainingTime += job.getProcessingTimeNeeded();
+        numOfJobsInQueue++;
     }
 
     /**
@@ -52,12 +54,30 @@ public class Server {
                 currentJob.process(timeToProcess, sysTime); // process the job
                 timeLeft -= timeToProcess; // reduce the time left
                 sysTime += timeToProcess; // move the system time forward
+                remainingTime -= timeToProcess; // remove the time used in processing from the remaining time
                 
                 if(currentJob.isFinished()){ // if the job is finished, remove it from the queue
                     jobQueue.poll();
                     numOfJobsProcessed++;
+                    numOfJobsInQueue--;
                 }
             }
         }
+    }
+
+    /**
+     * Returns the remaining time required to process all the jobs in the queue
+     * @return 
+     */
+    public double remainingWorkInQueue(){
+        return remainingTime;
+    }
+
+    /**
+     * Returns the number of jobs currently in the queue
+     * @return
+     */
+    public int size(){
+        return numOfJobsInQueue;
     }
 }
