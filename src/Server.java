@@ -50,7 +50,7 @@ public class Server {
         while(timeLeft>0.0){
             if(!jobQueue.isEmpty()){
                 Job currentJob = jobQueue.peek(); // get the job at the front of the queue
-                double timeToProcess = currentJob.getProcessingTimeNeeded(); // time to process the current job
+                double timeToProcess = currentJob.getProcessingTimeRemaining(); // time to process the current job
 
                 if(timeToProcess > timeLeft){ // if the time to process is more than the time left, process for the time left
                     timeToProcess = timeLeft;
@@ -70,6 +70,7 @@ public class Server {
             }
             else{
                 sysTime += timeLeft; // if there are no jobs in the queue, just move the system time forward
+                timeLeft = 0.0;
             }
         }
     }
@@ -102,6 +103,7 @@ public class Server {
         return totalWaitingTime;
     }
 
+    
     /**
      * Draws the server's state on the screen
      * @param g 
@@ -109,6 +111,8 @@ public class Server {
      * @param loc
      * @param numberOfServers
      */
+
+     /* 
     public void draw(Graphics g, Color c, double loc, int numberOfServers){
         double sep = (ServerFarmViz.HEIGHT - 20) / (numberOfServers + 2.0);
         g.setColor(Color.BLACK);
@@ -122,4 +126,5 @@ public class Server {
         else g.setColor(Color.RED.darker());
         g.fillOval(2 * (int) sep, (int) loc, (int) sep, (int) sep);
     }
+    */
 }
