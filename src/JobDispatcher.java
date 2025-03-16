@@ -57,4 +57,21 @@ public abstract class JobDispatcher {
             server.processTo(time);
         }
     }
+
+    /**
+     * Abstract method to pick a server for a job using different strategies
+     * @param j the job required to be dispatched
+     * @return the server to which the job should be dispatched
+     */
+    public abstract Server pickServer(Job j);
+
+    public void handleJob(Job job){
+        jobsHandled.offer(job);
+        advanceTimeTo(job.getArrivalTime()); // advance time to the arrival time of the job
+        serverFarmViz.repaint(); // update the visualization
+        Server serverChoosen =  pickServer(job); // pick a server for the job
+        serverChoosen.addJob(job); // add the job to the chosen server
+        serverFarmViz.repaint(); // update the visualization
+        numOfJobsHandled++;
+    }
 }
