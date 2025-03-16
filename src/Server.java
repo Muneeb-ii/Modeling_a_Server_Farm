@@ -21,4 +21,13 @@ public class Server {
         remainingTime = 0.0;
         numOfJobsProcessed = 0;
     }
+
+    /**
+     * Adds a job to the job queue
+     * @param job the job to be added
+     */
+    public void addJob(Job job){
+        jobQueue.offer(job);
+        remainingTime += job.getProcessingTimeNeeded();
+    }
 }
