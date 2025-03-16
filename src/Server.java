@@ -87,6 +87,14 @@ public class Server {
     }
 
     /**
+     * Returns the number of jobs processed
+     * @return
+     */
+    public int jobsProcessed(){
+        return numOfJobsProcessed;
+    }
+
+    /**
      * Draws the server's state on the screen
      * @param g 
      * @param c
