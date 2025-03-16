@@ -74,4 +74,12 @@ public abstract class JobDispatcher {
         serverFarmViz.repaint(); // update the visualization
         numOfJobsHandled++;
     }
+
+    /**
+     * Returns the number of jobs handled
+     * @return the number of jobs handled
+     */
+    public int getNumJobsHandled(){
+        return numOfJobsHandled;
+    }
 }
