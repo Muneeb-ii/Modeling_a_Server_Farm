@@ -38,4 +38,12 @@ public abstract class JobDispatcher {
     public double getTime(){
         return sysTime;
     }
+
+    /**
+     * Returns the list of servers
+     * @return the list of servers
+     */
+    public ArrayList<Server> getServerList(){
+        return servers;
+    }
 }
