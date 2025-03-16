@@ -82,4 +82,17 @@ public abstract class JobDispatcher {
     public int getNumJobsHandled(){
         return numOfJobsHandled;
     }
+
+    /**
+     * Returns the average waiting time of all the jobs handled
+     * @return the average waiting time of all the jobs handled
+     */
+    public double getAverageWaitingTime(){
+        double averageWaitingTime = 0.0;
+        for(Job j :jobsHandled){
+            averageWaitingTime += j.timeInQueue();
+        }
+        averageWaitingTime = averageWaitingTime / numOfJobsHandled;
+        return averageWaitingTime;
+    }
 }
