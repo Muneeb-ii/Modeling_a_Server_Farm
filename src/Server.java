@@ -112,7 +112,7 @@ public class Server {
      * @param numberOfServers
      */
 
-     /* 
+    
     public void draw(Graphics g, Color c, double loc, int numberOfServers){
         double sep = (ServerFarmViz.HEIGHT - 20) / (numberOfServers + 2.0);
         g.setColor(Color.BLACK);
@@ -126,5 +126,4 @@ public class Server {
         else g.setColor(Color.RED.darker());
         g.fillOval(2 * (int) sep, (int) loc, (int) sep, (int) sep);
     }
-    */
 }
