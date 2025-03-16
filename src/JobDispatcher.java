@@ -95,4 +95,19 @@ public abstract class JobDispatcher {
         averageWaitingTime = averageWaitingTime / numOfJobsHandled;
         return averageWaitingTime;
     }
+
+    /**
+     * Finishes up all the jobs in the queue by advancing the system time to the time required to finish all the jobs
+     * in each server
+     */
+    public void finishUp(){
+        double minTimeReq = 0.0; // minimum time required to finish all the jobs in the list
+        for(Server s : getServerList()){
+            double serverFinishTime = s.remainingWorkInQueue();
+            if(serverFinishTime > minTimeReq) { // if the finish time of the server is greater than the minimum time required, update the minimum time required
+                minTimeReq = serverFinishTime;
+            }
+        }
+        advanceTimeTo(sysTime + minTimeReq);
+    }
 }
