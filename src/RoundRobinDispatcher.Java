@@ -18,6 +18,12 @@ public class RoundRobinDispatcher extends JobDispatcher {
         currServerIndex = -1;
     }
 
+    /**
+     * Method to pick a server for a job in a round-robin fashion
+     * @param j the job to be dispatched
+     * @return the server to which the job will be dispatched
+     */
+    @Override
     public Server pickServer(Job j){
         currServerIndex++; // increment the index of the current server
         if (currServerIndex > getServerList().size() - 1){
