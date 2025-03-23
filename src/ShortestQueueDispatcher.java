@@ -15,6 +15,11 @@ public class ShortestQueueDispatcher extends JobDispatcher {
         super(k, showViz);
     }
 
+    /**
+     * Method to pick a server for a job with the shortest queue
+     * @param j the job to be dispatched
+     * @return the server to which the job will be dispatched
+     */
     @Override
     public Server pickServer(Job j){
         int shortestQueueIndex = 0; // index of the server with the shortest queue
