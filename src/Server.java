@@ -1,7 +1,7 @@
 /**
  * Author: Muneeb Azfar Nafees
  * 
- * Purpose of the class: 
+ * Purpose of the class: A server that processes jobs in a queue (FIFO). 
  * 
  */
 
@@ -77,7 +77,7 @@ public class Server {
 
     /**
      * Returns the remaining time required to process all the jobs in the queue
-     * @return 
+     * @return the remaining time
      */
     public double remainingWorkInQueue(){
         return remainingTime;
@@ -85,7 +85,7 @@ public class Server {
 
     /**
      * Returns the number of jobs currently in the queue
-     * @return
+     * @return the number of jobs
      */
     public int size(){
         return numOfJobsInQueue;
@@ -93,12 +93,16 @@ public class Server {
 
     /**
      * Returns the number of jobs processed
-     * @return
+     * @return the number of jobs processed
      */
     public int jobsProcessed(){
         return numOfJobsProcessed;
     }
 
+    /**
+     * Returns the total waiting time for all jobs
+     * @return the total waiting time
+     */
     public double getTotalWaitingTime() {
         return totalWaitingTime;
     }
@@ -111,8 +115,6 @@ public class Server {
      * @param loc
      * @param numberOfServers
      */
-
-    
     public void draw(Graphics g, Color c, double loc, int numberOfServers){
         double sep = (ServerFarmViz.HEIGHT - 20) / (numberOfServers + 2.0);
         g.setColor(Color.BLACK);
