@@ -8,6 +8,12 @@ public class ServerFarmSimulation {
 
     public static void main(String[] args) {
 
+        if (args.length < 3){
+            System.out.println("Please provide the number of servers, number of jobs, and dispatcher type as command line arguments.");
+            return;
+        }
+        
+
         // You can explore how these change your results if you want!
         // How often a new job arrives at the server farm, on average
         int meanArrivalTime = 3;
@@ -15,8 +21,8 @@ public class ServerFarmSimulation {
         int meanProcessingTime = 100;
 
         // Debugging settings
-        int numServers = 4; // Numbers of servers in the farm
-        int numJobs = 10; // Number of jobs to process
+        int numServers = Integer.parseInt(args[0]); // Numbers of servers in the farm
+        int numJobs = Integer.parseInt(args[1]); // Number of jobs to process
         boolean showViz = true; // Set to true to see the visualization, and false to run your experiments
         // to speed up the display, you can decrease the sleep time in the ServerFarmViz class.
 
@@ -28,7 +34,7 @@ public class ServerFarmSimulation {
          * to run your experiments
          */
 
-        String dispatcherType = "random"; // Which jobDispatcher to use
+        String dispatcherType = args[2]; // Which jobDispatcher to use
 
         // Initialize the job maker with the mean arrival and processing time
         JobMaker jobMaker = new JobMaker(meanArrivalTime, meanProcessingTime);
