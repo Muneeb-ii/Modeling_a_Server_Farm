@@ -23,7 +23,7 @@ public class ServerFarmSimulation {
         // Debugging settings
         int numServers = Integer.parseInt(args[0]); // Numbers of servers in the farm
         int numJobs = Integer.parseInt(args[1]); // Number of jobs to process
-        boolean showViz = true; // Set to true to see the visualization, and false to run your experiments
+        boolean showViz = false; // Set to true to see the visualization, and false to run your experiments
         // to speed up the display, you can decrease the sleep time in the ServerFarmViz class.
 
         // Main experiment settings
@@ -41,13 +41,13 @@ public class ServerFarmSimulation {
 
         // Create a dispatcher of the appropriate type
         JobDispatcher dispatcher = null;
-        if (dispatcherType == "random") {
+        if (dispatcherType.equals("random")) {
             dispatcher = new RandomDispatcher(numServers, showViz);
-        } else if (dispatcherType == "round") {
+        } else if (dispatcherType.equals("round")) {
             dispatcher = new RoundRobinDispatcher(numServers, showViz);
-        } else if (dispatcherType == "shortest") {
+        } else if (dispatcherType.equals("shortest")) {
             dispatcher = new ShortestQueueDispatcher(numServers, showViz);
-        } else if (dispatcherType == "least") {
+        } else if (dispatcherType.equals("least")) {
             dispatcher = new LeastWorkDispatcher(numServers, showViz);
         }
 
