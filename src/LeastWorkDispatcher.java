@@ -15,6 +15,11 @@
         super(k, showViz);
     }
 
+    /**
+     * Method to pick a server for a job based on the shortest queue
+     * @param j the job to be dispatched
+     * @return the server with the shortest queue
+     */
     @Override
     public Server pickServer(Job j){
         int shortestQueueIndex = 0; // index of the server with the shortest queue
