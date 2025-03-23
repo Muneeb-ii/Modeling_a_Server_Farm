@@ -5,10 +5,10 @@
  */
 
 import java.util.Random;
-
 public class RandomDispatcher extends JobDispatcher {
+    
+    Random rand = new Random(); // Random number generator
 
-    private Random rand;
     /**
      * Constructor for the RandomDispatcher class
      * @param k the number of servers
@@ -16,7 +16,6 @@ public class RandomDispatcher extends JobDispatcher {
      */
     public RandomDispatcher(int k, boolean showViz){
         super(k, showViz);
-        rand  = new Random();
     }
 
     /**
