@@ -57,12 +57,12 @@ public abstract class PriorityJobDispatcher {
      * @param j the job required to be dispatched
      * @return the server to which the job should be dispatched
      */
-    public abstract Server pickServer(Job j);
+    public abstract PriorityServer pickServer(Job j);
 
     public void handleJob(Job job){
         jobsHandled.offer(job);
         advanceTimeTo(job.getArrivalTime()); // advance time to the arrival time of the job
-        Server serverChoosen =  pickServer(job); // pick a server for the job
+        PriorityServer serverChoosen =  pickServer(job); // pick a server for the job
         serverChoosen.addJob(job); // add the job to the chosen server
     }
 
