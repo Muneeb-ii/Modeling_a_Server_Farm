@@ -1,7 +1,7 @@
 /**
  * Author: Muneeb Azfar Nafees
  * 
- * Purpose of the class: A job dispatcher that dispatches jobs to servers randomly.
+ * Purpose of the class: A job dispatcher that dispatches jobs to servers with the shortest queue.
  */
 
 public class ShortestQueueDispatcher extends JobDispatcher {
