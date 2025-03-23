@@ -91,7 +91,7 @@ public abstract class JobDispatcher {
         for(Job j :jobsHandled){
             averageWaitingTime += j.timeInQueue();
         }
-        averageWaitingTime = averageWaitingTime / numOfJobsHandled;
+        averageWaitingTime = averageWaitingTime / getNumJobsHandled();
         return averageWaitingTime;
     }
 
