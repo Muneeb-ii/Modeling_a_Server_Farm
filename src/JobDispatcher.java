@@ -14,7 +14,6 @@ public abstract class JobDispatcher {
     private ArrayList<Server> servers; // list of servers
     private double sysTime; // system time
     private LinkedList<Job> jobsHandled;// list of jobs handled
-    private int numOfJobsHandled; // number of jobs handled 
     private ServerFarmViz serverFarmViz; // visualization object
 
     /**
@@ -29,7 +28,6 @@ public abstract class JobDispatcher {
         }
         sysTime = 0.0;
         jobsHandled = new LinkedList<Job>();
-        numOfJobsHandled = 0;
         serverFarmViz = new ServerFarmViz(this, showViz);
     }
     
@@ -74,7 +72,6 @@ public abstract class JobDispatcher {
         Server serverChoosen =  pickServer(job); // pick a server for the job
         serverChoosen.addJob(job); // add the job to the chosen server
         serverFarmViz.repaint(); // update the visualization
-        numOfJobsHandled++;
     }
 
     /**
@@ -82,7 +79,7 @@ public abstract class JobDispatcher {
      * @return the number of jobs handled
      */
     public int getNumJobsHandled(){
-        return numOfJobsHandled;
+        return jobsHandled.size();
     }
 
     /**
