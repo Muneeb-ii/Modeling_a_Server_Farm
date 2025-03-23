@@ -14,8 +14,8 @@
       * @param k the number of servers
       * @param showViz whether to show visualization or not
       */
-     public PriorityRandomDispatcher(int k, boolean showViz){
-        super(k, showViz);
+     public PriorityRandomDispatcher(int k){
+        super(k);
      }
  
      /**

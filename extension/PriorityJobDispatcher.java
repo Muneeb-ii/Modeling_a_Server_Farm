@@ -16,7 +16,7 @@ public abstract class PriorityJobDispatcher {
      * @param k the number of servers
      * @param showViz whether to show visualization or not
      */
-    public PriorityJobDispatcher(int k, boolean showViz){
+    public PriorityJobDispatcher(int k){
         servers = new ArrayList<>();
         for(int i=0; i<k; i++){ // create k servers
             servers.add(new PriorityServer());
