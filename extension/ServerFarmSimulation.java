@@ -2,6 +2,7 @@
 file name:      ServerFarmSimulation.java
 Authors:        Ike Lage
 last modified:  03/07/2024
+Edits:          By Muneeb Azfar Nafees on 03/23/2025
 */
 
 public class ServerFarmSimulation {
@@ -49,6 +50,9 @@ public class ServerFarmSimulation {
             dispatcher = new ShortestQueueDispatcher(numServers, showViz);
         } else if (dispatcherType.equals("least")) {
             dispatcher = new LeastWorkDispatcher(numServers, showViz);
+        }
+        else if (dispatcherType.equals("hybrid")) { // New dispatcher type added by Muneeb Azfar Nafees
+            dispatcher = new HybridQueueDispatcher(numServers, showViz);
         }
 
         // Have the dispatched handle the specified number of jobs
