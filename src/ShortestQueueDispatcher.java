@@ -7,7 +7,7 @@
 public class ShortestQueueDispatcher extends JobDispatcher {
  
     /**
-     * Constructor for the RandomDispatcher class
+     * Constructor for the ShortestQueueDispatcher class
      * @param k the number of servers
      * @param showViz whether to show visualization or not
      */
