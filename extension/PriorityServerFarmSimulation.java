@@ -42,17 +42,15 @@ public class PriorityServerFarmSimulation {
         if (dispatcherType.equals("random")) {
             dispatcher = new PriorityRandomDispatcher(numServers);
         }
-        /* 
         else if (dispatcherType.equals("round")) {
-            dispatcher = new RoundRobinDispatcher(numServers, showViz);
+            dispatcher = new PriorityRoundRobinDispatcher(numServers);
         } 
         else if (dispatcherType.equals("shortest")) {
-            dispatcher = new ShortestQueueDispatcher(numServers, showViz);
+            dispatcher = new PriorityShortestQueueDispatcher(numServers);
         } 
         else if (dispatcherType.equals("least")) {
-            dispatcher = new LeastWorkDispatcher(numServers, showViz);
+            dispatcher = new PriorityLeastWorkDispatcher(numServers);
         }
-        */
 
         // Have the dispatched handle the specified number of jobs
         for (int i = 0; i < numJobs; i++) {
