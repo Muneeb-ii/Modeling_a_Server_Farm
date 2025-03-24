@@ -1,65 +1,67 @@
 /*
 file name:      ServerFarmSimulation.java
-Authors:        Ike Lage
-last modified:  03/07/2024
+Authors:        Ike Lage (modified by [Muneeb Azfar Nafees])
+last modified:  23 March 2025
 */
 
 public class ServerFarmSimulation {
 
     public static void main(String[] args) {
 
-        if (args.length < 3){
-            System.out.println("Please provide the number of servers, number of jobs, and dispatcher type as command line arguments.");
-            return;
-        }
-        
+        // Simulation parameters
+        int meanArrivalTime = 3;       // Average interval between job arrivals
+        int meanProcessingTime = 100;    // Average processing time for a job
+        boolean showViz = false;         // Disable visualization for experiments
 
-        // You can explore how these change your results if you want!
-        // How often a new job arrives at the server farm, on average
-        int meanArrivalTime = 3;
-        // How long a job takes to process, on average
-        int meanProcessingTime = 100;
+        // Experiment 1: Dispatcher Comparison
+        int numServersExp1 = 34;         // Fixed number of servers for Experiment 1
+        int numJobsExp1 = 10000000;      // Number of jobs for Experiment 1
 
-        // Debugging settings
-        int numServers = Integer.parseInt(args[0]); // Numbers of servers in the farm
-        int numJobs = Integer.parseInt(args[1]); // Number of jobs to process
-        boolean showViz = false; // Set to true to see the visualization, and false to run your experiments
-        // to speed up the display, you can decrease the sleep time in the ServerFarmViz class.
+        System.out.println("Experiment 1: Dispatcher Comparison (34 servers, " + numJobsExp1 + " jobs)");
+        String[] dispatcherTypes = {"random", "round", "least", "shortest"};
+        for (String dType : dispatcherTypes) {
+            // Initialize the job maker for this experiment
+            JobMaker jobMaker = new JobMaker(meanArrivalTime, meanProcessingTime);
 
-        // Main experiment settings
-        /**
-         * int numServers = 34 ; //Numbers of servers in the farm
-         * int numJobs = 10000000 ; //Number of jobs to process
-         * boolean showViz = false ; //Set to true to see the visualization, and false
-         * to run your experiments
-         */
+            // Create the appropriate dispatcher based on the type
+            JobDispatcher dispatcher = null;
+            if (dType.equals("random")) {
+                dispatcher = new RandomDispatcher(numServersExp1, showViz);
+            } else if (dType.equals("round")) {
+                dispatcher = new RoundRobinDispatcher(numServersExp1, showViz);
+            } else if (dType.equals("shortest")) {
+                dispatcher = new ShortestQueueDispatcher(numServersExp1, showViz);
+            } else if (dType.equals("least")) {
+                dispatcher = new LeastWorkDispatcher(numServersExp1, showViz);
+            }
 
-        String dispatcherType = args[2]; // Which jobDispatcher to use
+            // Dispatch jobs
+            for (int i = 0; i < numJobsExp1; i++) {
+                dispatcher.handleJob(jobMaker.getNextJob());
+            }
+            dispatcher.finishUp();
 
-        // Initialize the job maker with the mean arrival and processing time
-        JobMaker jobMaker = new JobMaker(meanArrivalTime, meanProcessingTime);
-
-        // Create a dispatcher of the appropriate type
-        JobDispatcher dispatcher = null;
-        if (dispatcherType.equals("random")) {
-            dispatcher = new RandomDispatcher(numServers, showViz);
-        } else if (dispatcherType.equals("round")) {
-            dispatcher = new RoundRobinDispatcher(numServers, showViz);
-        } else if (dispatcherType.equals("shortest")) {
-            dispatcher = new ShortestQueueDispatcher(numServers, showViz);
-        } else if (dispatcherType.equals("least")) {
-            dispatcher = new LeastWorkDispatcher(numServers, showViz);
+            // Print out the formatted result for this dispatcher
+            System.out.println("Dispatcher: " + dType + ", Avg. Wait time: " + dispatcher.getAverageWaitingTime());
         }
 
-        // Have the dispatched handle the specified number of jobs
-        for (int i = 0; i < numJobs; i++) {
-            dispatcher.handleJob(jobMaker.getNextJob());
+        System.out.println("\nExperiment 2: Varying Server Count (ShortestQueueDispatcher, " + numJobsExp1 + " jobs)");
+        // Experiment 2: Vary the number of servers from 30 to 40 for the ShortestQueueDispatcher
+        for (int s = 30; s <= 40; s++) {
+            // Reinitialize JobMaker for each simulation run
+            JobMaker jobMaker = new JobMaker(meanArrivalTime, meanProcessingTime);
+
+            // Use the ShortestQueueDispatcher for this experiment
+            JobDispatcher dispatcher = new ShortestQueueDispatcher(s, showViz);
+
+            // Dispatch jobs
+            for (int i = 0; i < numJobsExp1; i++) {
+                dispatcher.handleJob(jobMaker.getNextJob());
+            }
+            dispatcher.finishUp();
+
+            // Print out the formatted result for this server count
+            System.out.println("Servers: " + s + ", Avg. Wait time: " + dispatcher.getAverageWaitingTime());
         }
-        dispatcher.finishUp(); // Finish all of the remaining jobs in Server queues
-
-        // Print out the mean processing time
-        System.out.println("Dispatcher: " + dispatcherType + ", Avg. Wait time: " + dispatcher.getAverageWaitingTime());
-
     }
-
 }
