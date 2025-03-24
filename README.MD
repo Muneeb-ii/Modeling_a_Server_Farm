@@ -59,4 +59,29 @@ The project includes automated experiments to:
      ```bash
      java ServerFarmSimulation 34 10000000 hybrid
    _Note_: For fair comparisons with the priority-based simulations, modify the number of jobs in the baseline FIFO simulation to 100,000 as required.
+
+## Code Structure
+- **Job.java**: Defines the Job class and its methods (arrival time, processing time, etc.).
+- **Server.java**: Manages a FIFO queue of jobs, processes them in order, and tracks system metrics.
+- **JobDispatcher.java**: An abstract class that provides a framework for implementing various dispatching strategies.
+- **Dispatcher Implementations:**
+  - **RandomDispatcher.java**
+  - **RoundRobinDispatcher.java**
+  - **ShortestQueueDispatcher.java**
+  - **LeastWorkDispatcher.java**
+- **ServerFarmSimulation.java**: Main simulation driver that runs experiments automatically.
+- **Extensions:**
+  - **Priority Extension:**
+    - **PriorityServer.java**
+    - **PriorityJobDispatcher.java**
+    - **PriorityRandomDispatcher.java**, **PriorityRoundRobinDispatcher.java**, **PriorityLeastWorkDispatcher.java**, **PriorityShortestQueueDispatcher.java**
+    - **PriorityServerFarmSimulation.java**
+  - **Hybrid Dispatcher Extension:**
+    - **HybridQueueDispatcher.java**
+    - Integrated into **ServerFarmSimulation** for automated experiments.
+
+## Acknowledgments
+- **GeeksforGeeks**
+- **My peers and instructors** for their insightful feedback.
+- **Special thanks** to **Rishit Chatterjee** and **Aayan Shah** for their support during the project.
      
