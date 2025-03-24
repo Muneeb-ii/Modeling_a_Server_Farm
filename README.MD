@@ -54,6 +54,7 @@ The project includes automated experiments to:
 4. **Running Extensions:**
    - Priority Queue Extension: Navigate to the extension directory, compile the priority-based files, and run:
      ```bash
+     cd extension
      java PriorityServerFarmSimulation
    - Hybrid Dispatcher Extension: Adjust weights within the HybridQueueDispatcher as needed and run:
      ```bash
